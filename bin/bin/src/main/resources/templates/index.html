@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Notebooks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/svg" href="iconos/laptop.svg">
+</head>
+
+<body onload="cargar(),startTime();">
+
+    <div class="container-lg bg-secondary">
+
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <h1 class="navbar-brand text-primary">
+                    <img src="imagenes/logo.png" alt="Logo" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    CFP 8-Registro de dispositivos
+                </h1>
+            </div>
+        </nav>
+
+        <form class="bg-secondary-subtle formulario" th:object="${dispositivo}" th:action="@{/save}" method="post">
+
+            <div class="mb-3 row" style="display: none">
+                <!-- fecha -->
+                <div class="mb-3 row col-sm-6">
+                    <label for="fecha" class="col-sm-3 col-form-label text-primary">
+                        Fecha
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control text-primary" id="fecha" name="fecha" readonly
+                            th:field="*{fecha}">
+                    </div>
+                </div>
+
+                <!-- hora -->
+                <div class="mb-3 row col-sm-6" style="display: none">
+                    <label for="hora" class="col-sm-3 col-form-label text-primary">
+                        Hora
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control text-primary" id="hora" name="hora" readonly
+                        th:field="*{hora}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row" style="display: none"> <!--  style="display: none" -->
+                <!-- ip_publica -->
+                <div class="mb-3 row col-sm-6">
+                    <label for="ip_publica" class="col-sm-3 col-form-label text-primary">
+                        IP Pública
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control text-primary" id="ip_publica" name="ip_publica" readonly
+                        th:field="*{ip_publica}">
+                    </div>
+                </div>
+
+                <!-- ip_privada -->
+                <div class="mb-3 row col-sm-6" style="display: none">
+                    <label for="ip_privada" class="col-sm-3 col-form-label text-primary">
+                        IP Privada
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control text-primary" id="ip_privada" name="ip_privada" readonly
+                        th:field="*{ip_privada}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- nombre -->
+            <div class="mb-3 row">
+                <label for="nombre" class="col-sm-3 col-form-label text-primary">
+                    Nombre y Apellido
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Juan, Perez" class="form-control text-primary" id="nombre"
+                        name="nombre" required minlength="3" maxlength="40" th:field="*{nombre}">
+                </div>
+            </div>
+
+            <!-- curso -->
+            <div class="mb-3 row">
+                <label for="curso" class="col-sm-3 col-form-label text-primary">
+                    Curso/Módulo
+                </label>
+                <div class="col-sm-9">
+                    <select class="form-select text-primary" th:field="*{curso}" aria-label="Default select example"
+                        id="curso" name="curso">
+                        <option value="otro curso" selected>otro curso</option>
+                        <option value="Técnicas de programación">Técnicas de programación</option>
+                        <option value="Programación orientada a objetos">Programación orientada a objetos</option>
+                        <option value="Base de datos">Base de datos</option>
+                        <option value="Relaciones Laborales">Relaciones Laborales</option>
+                        <option value="Interface Gráfica Web">Interface Gráfica Web</option>
+                        <option value="Desarrollo de aplicaciones Web">Desarrollo de aplicaciones Web</option>
+                        <option value="Gestión de Base de Datos">Gestión de Base de Datos</option>
+                        <option value="Administración de Bases de Datos">Administración de Bases de Datos</option>
+                        <option value="Modelado 3D">Modelado 3D</option>
+                        <option value="Tester de aplicaciones">Tester de aplicaciones</option>
+                        <option value="Impresión 3D">Impresión 3D</option>
+                        <option value="Diseño Asistido por Computadora">Diseño Asistido por Computadora</option>
+                        <option value="Operador de Imágenes Digitales">Operador de Imágenes Digitales</option>
+                        <option value="Informática Básica">Informática Básica</option>
+                        <option value="Procesamiento de Datos">Procesamiento de Datos</option>
+                        <option value="Sistemas Embebidos">Sistemas Embebidos</option>
+                        <option value="Organización del computador">Organización del computador</option>
+                        <option value="Tecnología de Redes">Tecnología de Redes</option>
+                        <option value="Mantenimiento e instalación de redes">Mantenimiento e instalación de redes
+                        </option>
+                        <option value="Administración de redes">Administración de redes</option>
+                        <option value="Circuitos Eléctricos y Mediciones">Circuitos Eléctricos y Mediciones</option>
+                        <option value="Tecnología de control">Tecnología de control</option>
+                        <option value="Instalación y Mantenimiento de Máquinas Eléctricas">Instalación y Mantenimiento
+                            de
+                            Máquinas Eléctricas</option>
+                        <option value="Instalación y Mantenimiento de Sistemas Neumáticos">Instalación y Mantenimiento
+                            de
+                            Sistemas Neumáticos</option>
+                        <option value="Instalación y Mantenimiento de Sistemas Automáticos">Instalación y Mantenimiento
+                            de
+                            Sistemas Automáticos</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- turno -->
+            <div class="mb-3 row">
+                <label for="turno" class="col-sm-3 col-form-label text-primary">
+                    Turno/Módulo
+                </label>
+                <div class="col-sm-9">
+                    <select class="form-select text-primary" th:field="*{turno}" aria-label="Default select example"
+                        id="turno" name="turno">
+                        <option value="otro" selected>otro turno</option>
+                        <option value="Mañana">Mañana</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noche">Noche</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- aula -->
+            <div class="mb-3 row">
+                <label for="aula" class="col-sm-3 col-form-label text-primary">
+                    Aula
+                </label>
+                <div class="col-sm-9">
+                    <select class="form-select text-primary" th:field="*{aula}" aria-label="Default select example"
+                        id="aula" name="aula">
+                        <option value="OTRO" selected>otra aula</option>
+                        <option value="AUDITORIO">Auditorio</option>
+                        <option value="AULA1">Aula 1</option>
+                        <option value="AULA2">Aula 2</option>
+                        <option value="AULA3">Aula 3</option>
+                        <option value="AULA4">Aula 4</option>
+                        <option value="AULA5">Aula 5</option>
+                        <option value="AULA6">Aula 6</option>
+                        <option value="AULA7">Aula 7</option>
+                        <option value="AULA8">Aula 8</option>
+                        <option value="AULA9">Aula 9</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- bien -->
+            <div class="mb-3 row">
+                <label for="bien" class="col-sm-3 col-form-label text-primary">
+                    Bien que Ingresa
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Laptop 15 pulgadas" class="form-control text-primary" id="bien"
+                        name="bien" required minlength="3" maxlength="100" th:field="*{bien}">
+                </div>
+            </div>
+
+            <!-- marca -->
+            <div class="mb-3 row">
+                <label for="marca" class="col-sm-3 col-form-label text-primary">
+                    Marca Modelo NroSerie
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" placeholder="Sansung np300" class="form-control text-primary" id="marca"
+                        name="marca" required minlength="3" maxlength="100" th:field="*{marca}">
+                </div>
+            </div>
+
+            <!-- observaciones -->
+            <div class="mb-3 row">
+                <label for="observaciones" class="col-sm-3 col-form-label text-primary">
+                    Observaciones
+                </label>
+                <div class="col-sm-9">
+                    <textarea class="form-control text-primary" th:field="*{observaciones}" id="observaciones"
+                        name="observaciones"></textarea>
+                </div>
+            </div>
+
+            <!-- botones -->
+            <div class="mb-3 row">
+                <button type="reset" class="btn btn-danger col-sm-4">Borrar</button>
+                <button type="submit" class="btn btn-success col-sm-4">Enviar</button>
+            </div>
+
+            <!-- información -->
+            <div class="mb-3 row">
+                <label for="marca" class="col-sm-3 col-form-label text-primary">
+                    información
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control text-primary" id="informacion" name="informacion" readonly
+                        th:value="${mensaje}">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/config.js"></script>
+</body>
+
+</html>
