@@ -11,11 +11,11 @@ RUN mvn clean package
 #
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY --from=build /app/target/*.jar /app/app.jar
+COPY --from=build /app/target/cursos-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8095
 ENTRYPOINT ["java", "-jar", "/app.jar"]
 #FROM amazoncorretto:20-alpine-jdk
 #
 #COPY target/cursos-0.0.1-SNAPSHOT.jar app.jar
-#
+#COPY --from=build /app/target/*.jar /app/app.jar
 #ENTRYPOINT ["java", "-jar", "/app.jar"]
